@@ -2,6 +2,10 @@
 
 A nicer defauly directory view using Apache's mod autoindex. With a custom html header and footer, the result looks nice and comes with an integrated image preview mechanism.
 
+## How to use
+
+Just copy these files in the root directory of your Apache server. You need `mod_autoindex` installed in order for this to work. If you already have a `.htaccess` file in the root, add to its content the code from the one on this repo.
+
 ## Info
 
 For more info, you can read my blog posts:
