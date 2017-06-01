@@ -1,0 +1,30 @@
+<p class="footer">localhost@bbucur</p>
+<script>
+
+     var isImage = function (path) {
+          var reg_exp = new RegExp('\.(jpg|jpeg|png)$', 'gmi');
+          if (path && path.match(reg_exp)) {
+               return true;
+          }
+
+          return false;
+     }
+
+     var list_items = document.getElementsByTagName('li'),
+          list_index = 0,
+          total_items = list_items.length;
+     for ( ; list_index < total_items; list_index++) {
+
+          var list_item = list_items[list_index],
+               list_item_a = list_item.getElementsByTagName('a')[0];
+
+          var a_href = list_item_a.getAttribute('href');
+          if (isImage(a_href)) {
+               var image_preview = document.createElement('img');
+               image_preview.src = a_href;
+               list_item_a.appendChild(image_preview);
+          }
+     }
+</script>
+</body>
+</html>

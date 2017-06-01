@@ -1,0 +1,14 @@
+# DIRECTORY CUSTOMIZATION
+<IfModule mod_autoindex.c>
+# SET INDEX OPTIONS
+IndexOptions IgnoreCase FoldersFirst SuppressHTMLPreamble
+
+# SPECIFY HEADER FILE
+HeaderName /.header.html
+
+# SPECIFY FOOTER FILE
+ReadmeName /.footer.html
+
+# IGNORE THESE FILES
+IndexIgnore header.html footer.html favicon.ico .htaccess .ftpquota .DS_Store icons .log ,v ,t .?? ~ #
+</IfModule>
