@@ -1,30 +1,71 @@
 <p class="footer">localhost</p>
 <script>
 
-     var isImage = function (path) {
-          var reg_exp = new RegExp('\.(jpg|jpeg|png)$', 'gmi');
-          if (path && path.match(reg_exp)) {
-               return true;
-          }
+    var new_tab_text  = '[new tab]',
+        copy_text     = '[copy]',
+        download_text = '[download]';
 
-          return false;
-     }
+    // if you do not want action links set the variable below false
+    var action_links_enabled = true;
 
-     var list_items = document.getElementsByTagName('li'),
-          list_index = 0,
-          total_items = list_items.length;
-     for ( ; list_index < total_items; list_index++) {
+    var copy_animation_timeout,
+        copyToCliboard = function (self) {
 
-          var list_item = list_items[list_index],
-               list_item_a = list_item.getElementsByTagName('a')[0];
+        var input = self.getElementsByTagName('input')[0],
+            url_to_copy = input.value;
 
-          var a_href = list_item_a.getAttribute('href');
-          if (isImage(a_href)) {
-               var image_preview = document.createElement('img');
-               image_preview.src = a_href;
-               list_item_a.appendChild(image_preview);
-          }
-     }
+        input.select();
+        input.focus();
+
+        if (document.execCommand('Copy')) {
+
+            self.classList.add('copied');
+                copy_animation_timeout = setTimeout(function() {
+                self.classList.remove('copied');
+            }, 1000);
+        }
+    }
+
+
+    var isImage = function (path) {
+        var reg_exp = new RegExp('\.(jpg|jpeg|png|bmp|tiff)$', 'gmi');
+            if (path && path.match(reg_exp)) {
+                return true;
+            }
+
+        return false;
+    }
+
+    var list_items = document.getElementsByTagName('li'),
+        list_index = 0,
+        total_items = list_items.length;
+    for ( ; list_index < total_items; list_index++) {
+
+        var list_item = list_items[list_index],
+            list_item_a = list_item.getElementsByTagName('a')[0];
+
+        var a_href = list_item_a.getAttribute('href');
+
+        // we will inject Open in new tab, Copy and Download links dynamically
+        var links_string_to_insert = ''; 
+        links_string_to_insert += '<a class="action" href="' + a_href + '" target="_blank">' + new_tab_text + '</a>';
+        links_string_to_insert += '<span class="action copy" onclick="copyToCliboard(this)"><input type="text" readonly value="' + a_href + '">' + copy_text + '</span>';
+
+        if (isImage(a_href)) {
+            var image_preview = document.createElement('img');
+            image_preview.src = a_href;
+            list_item_a.appendChild(image_preview);
+
+            links_string_to_insert += '<a class="action" href="' + a_href + '" download>' + download_text + '</a>';
+        }
+
+        // the first link is a specific case, it points to the parent directory so it won't get the extra options
+        var is_not_parent_directory_link = (list_index !== 0);
+        if (is_not_parent_directory_link && action_links_enabled) {
+            list_item.innerHTML += links_string_to_insert;
+        }
+
+    }
 </script>
 </body>
 </html>

@@ -1,81 +1,104 @@
 <html>
-<head>
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <style>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
 
-          * {
-          -webkit-box-sizing: border-box;
-          -moz-box-sizing: border-box;
-          box-sizing: border-box;
-          }
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
 
-          html, body {
-               margin: 0;
-               padding: 0;
-               font-family: Arial;
-          }
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial;
+        }
 
-          ul {
-               list-style: none;
-               padding: 0;
-               font-size: 0;
-          }
+        ul {
+            list-style: none;
+            padding: 0;
+            font-size: 0;
+        }
 
-          li {
-               width: 100%;
-               font-size: 14px;
-               font-size: initial;
-          }
+        li {
+            width: 100%;
+            font-size: 14px;
+            font-size: initial;
+        }
 
-          li a {
-               padding: 15px 30px;
-               width: 100%;
-               display: block;
-               color: #00002d;
-               text-decoration: none;
-               text-transform: capitalize;
-               font-size: 1em;
-               word-wrap: break-word;
-          }
+        li a {
+            padding: 15px 30px;
+            width: 100%;
+            display: block;
+            color: #00002d;
+            text-decoration: none;
+            text-transform: none;
+            font-size: 1em;
+            word-wrap: break-word;
+        }
 
-          li:nth-child(odd) a {
-               background-color: #f3f6fa;
+        li .action {
+            display: inline-block;
+            padding: 5px;
+            width: auto;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        li .action:nth-child(2) {
+            padding-left: 30px;
+        }
 
-          }
+        li .action.copy {
+            transition: color 0.5s;
+        }
+        li .action.copy.copied {
+            color: green;
+        }
 
-          li:first-child a{
-               color: #747372;
-               font-weight: bold;
-               text-decoration: none;
-               border-top: 1px solid #bababa;
-               border-bottom: 1px solid #bababa;
-               background: #eeeeee; /* Old browsers */
-               background: -moz-linear-gradient(top, #eeeeee 0%, #cccccc 100%); /* FF3.6+ */
-               background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#cccccc)); /* Chrome,Safari4+ */
-               background: -webkit-linear-gradient(top, #eeeeee 0%,#cccccc 100%); /* Chrome10+,Safari5.1+ */
-               background: -o-linear-gradient(top, #eeeeee 0%,#cccccc 100%); /* Opera 11.10+ */
-               background: -ms-linear-gradient(top, #eeeeee 0%,#cccccc 100%); /* IE10+ */
-               background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%); /* W3C */
-               filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
-          }
+        li .action input {
+            position: absolute;
+            top: -1000px;
+            left: -1000px;
+        }
 
-          li a img {
-               vertical-align: top;
-               display: block;
-               max-width: 200px;
-               max-height: 200px;
-               width: auto;
-               height: auto;
-               margin-left: 10px;
-               padding: 5px;
-               border: 1px solid #ccc;
-          }
+        li:nth-child(odd) {
+            background-color: #f3f6fa;
+        }
 
-          .footer {
-               text-align: center;
-               font-style: italic;
-               font-size: 0.8em;
-          }
-     </style>
-</head>
+        li:first-child {
+            color: #747372;
+            font-weight: bold;
+            text-decoration: none;
+            border-top: 1px solid #bababa;
+            border-bottom: 1px solid #bababa;
+            background: #eeeeee; /* Old browsers */
+            background: -moz-linear-gradient(top, #eeeeee 0%, #cccccc 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#cccccc)); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top, #eeeeee 0%,#cccccc 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top, #eeeeee 0%,#cccccc 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top, #eeeeee 0%,#cccccc 100%); /* IE10+ */
+            background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+        }
+
+        li a img {
+            vertical-align: top;
+            display: block;
+            max-width: 200px;
+            max-height: 200px;
+            width: auto;
+            height: auto;
+            margin-left: 10px;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .footer {
+            text-align: center;
+            font-style: italic;
+            font-size: 0.8em;
+        }
+        </style>
+    </head>
 <body>
