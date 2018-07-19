@@ -1,12 +1,87 @@
 <p class="footer">localhost</p>
+<p class="settings">
+    <button id="show_settings" onclick="toggleSettingsPanel(this)"></button>
+    <div id="settings_panel" class="hidden">
+        <button id="toggle_actions" onclick="toggleActionLinks(this)"></button>
+    </div>
+</p>
 <script>
+
+    var settings_panel = document.getElementById('settings_panel'),
+        settings_panel_visible = false,
+        show_settings_button = document.getElementById('show_settings'),
+        show_settings_text = '[show settings]',
+        hide_settings_text = '[hide settings]';
+
+    if (settings_panel_visible) {
+        show_settings_button.innerHTML = hide_settings_text;
+    } else {
+        show_settings_button.innerHTML = show_settings_text;
+    }
+
+    var toggleSettingsPanel = function (self) {
+
+        if (settings_panel_visible) {
+
+            settings_panel.classList.add('hidden');
+            settings_panel_visible = false;
+            
+            self.innerHTML = show_settings_text;
+
+        } else {
+
+            settings_panel.classList.remove('hidden');
+            settings_panel_visible = true;
+
+            self.innerHTML = hide_settings_text;
+        }
+    }
+
+    // if you do not want action links by default set the variable below false
+    var action_links_enabled  = true;
+
+    // overwriting based on what we saved (or not) in the local storage
+    var saved_action_links_setting = window.localStorage.getItem('custom-mod-autoindex:action_links_enabled');
+    if (typeof saved_action_links_setting !== 'undefined') {
+        if (saved_action_links_setting === 'true') {
+            action_links_enabled = true;
+        } else {
+            action_links_enabled = false;
+        }
+    }
+
+
+    var toggle_actions_button = document.getElementById('toggle_actions'),
+        show_actions_text = 'Show action links',
+        hide_actions_text = 'Hide action links';
+
+    if (action_links_enabled) {
+        toggle_actions_button.innerHTML = hide_actions_text;
+    } else {
+        toggle_actions_button.innerHTML = show_actions_text;
+    }
+
+    var toggleActionLinks = function (self) {
+
+        if (action_links_enabled) {
+
+            action_links_enabled = false;
+            window.localStorage.setItem('custom-mod-autoindex:action_links_enabled', 'false');
+
+            self.innerHTML = show_actions_text;
+
+        } else {
+
+            action_links_enabled = true;
+            window.localStorage.setItem('custom-mod-autoindex:action_links_enabled', 'true');
+
+            self.innerHTML = hide_actions_text;
+        }
+    }
 
     var new_tab_text  = '[new tab]',
         copy_text     = '[copy]',
         download_text = '[download]';
-
-    // if you do not want action links set the variable below false
-    var action_links_enabled = true;
 
     var copy_animation_timeout,
         copyToCliboard = function (self) {
