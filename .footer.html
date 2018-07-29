@@ -120,11 +120,16 @@
             list_item_a = list_item.getElementsByTagName('a')[0];
 
         var a_href = list_item_a.getAttribute('href');
+        if (a_href.indexOf('://') === -1) {
+            var link_to_copy = window.location.href + a_href;
+        } else {
+            var link_to_copy = a_href;
+        }
 
         // we will inject Open in new tab, Copy and Download links dynamically
         var links_string_to_insert = ''; 
         links_string_to_insert += '<a class="action" href="' + a_href + '" target="_blank">' + new_tab_text + '</a>';
-        links_string_to_insert += '<span class="action copy" onclick="copyToCliboard(this)"><input type="text" readonly value="' + a_href + '">' + copy_text + '</span>';
+        links_string_to_insert += '<span class="action copy" onclick="copyToCliboard(this)"><input type="text" readonly value="' + link_to_copy + '">' + copy_text + '</span>';
 
         if (isImage(a_href)) {
             var image_preview = document.createElement('img');
